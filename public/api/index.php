@@ -51,7 +51,8 @@ switch ($method) {
 
     case 'POST':
         if ($controller != null && $id == null) {
-            echo $userEventController->create($data);
+            echo $userEventController->insert($data);
+            var_dump($data);
         }
         else echo json_encode(["erro" => "true"]);
         break;

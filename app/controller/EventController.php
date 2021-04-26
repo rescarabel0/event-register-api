@@ -5,13 +5,13 @@ use app\entity\Event;
 
 class EventController{
 
-    function create($data = null){
+    function insert($data = null){
         $event = $this->convertDataToEventJson($data);
-        var_dump($event);
     }
 
     function update($data = null, $id = 0){
-        return json_encode(["name" => "update"]);
+        $event = $this->convertDataToEventJson($data);
+        $event->setId($id);
     }
 
     function delete($id = 0){
@@ -31,9 +31,39 @@ class EventController{
             null,
             (isset($data['titulo']) ? $data['titulo'] : null),
             (isset($data['descricao']) ? $data['descricao'] : null),
-            (isset($data['data']) ? $data['data'] : null),
+            (isset($data['dataDay']) ? $data['dataDay'] : null),
+            (isset($data['dataMonth']) ? $data['dataMonth'] : null),
+            (isset($data['dataYear']) ? $data['dataYear'] : null),
             (isset($data['userId']) ? $data['userId'] : null),
         );
     }
     
+    private function validate(Event $event, $update = false){
+
+        if ($update && $event->getId() <= 0) {
+            return json_encode(["error" => "true"]);
+        }
+
+        if (strlen($event->getTitulo()) <= 3 || strlen($event->getTitulo()) > 100) {
+            return json_encode(["error" => "true"]);
+        }
+
+        if (strlen($event->getDescricao()) < 10 || strlen($event->getDescricao()) > 250) {
+            return json_encode(["error" => "true"]);
+        }
+
+        if ($event->getDataDay() <= 0 || $event->getDataDay() > 31) {
+            return json_encode(["error" => "true"]);
+        }
+        if ($event->getDataMonth() <= 0 || $event->getDataMonth() > 12) {
+            return json_encode(["error" => "true"]);
+        }
+        if ($event->getDataYear() < 2021) {
+            return json_encode(["error" => "true"]);
+        }
+
+        if ($event->getUserId() <= 0) {
+            return json_encode(["error" => "true"]);
+        }
+    }
 }
