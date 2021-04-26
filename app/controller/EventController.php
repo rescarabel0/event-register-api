@@ -7,11 +7,22 @@ class EventController{
 
     function insert($data = null){
         $event = $this->convertDataToEventJson($data);
+        $result = $this->validate($event);
+
+        if ($result != "") {
+            echo json_encode(["erro" => $result]);
+        }
     }
 
     function update($data = null, $id = 0){
         $event = $this->convertDataToEventJson($data);
         $event->setId($id);
+
+        $result = $this->validate($event, true);
+
+        if ($result != "") {
+            echo json_encode(["erro" => $result]);
+        }
     }
 
     function delete($id = 0){
@@ -39,31 +50,32 @@ class EventController{
     }
     
     private function validate(Event $event, $update = false){
-
+        
         if ($update && $event->getId() <= 0) {
-            return json_encode(["error" => "true"]);
+            return "invalid id";
         }
 
         if (strlen($event->getTitulo()) <= 3 || strlen($event->getTitulo()) > 100) {
-            return json_encode(["error" => "true"]);
+            return "invalid title";
         }
 
         if (strlen($event->getDescricao()) < 10 || strlen($event->getDescricao()) > 250) {
-            return json_encode(["error" => "true"]);
+            return "invalid description";
         }
 
         if ($event->getDataDay() <= 0 || $event->getDataDay() > 31) {
-            return json_encode(["error" => "true"]);
+            return "invalid day date";
         }
         if ($event->getDataMonth() <= 0 || $event->getDataMonth() > 12) {
-            return json_encode(["error" => "true"]);
+            return "invalid month date";
         }
         if ($event->getDataYear() < 2021) {
-            return json_encode(["error" => "true"]);
+            return "invalid year date";
         }
 
         if ($event->getUserId() <= 0) {
-            return json_encode(["error" => "true"]);
+            return "invalid user id";
         }
+        return "";
     }
 }
