@@ -19,6 +19,7 @@ $method = $_SERVER["REQUEST_METHOD"]; //POST, PUT, GET ou DELETE
 $uri = $_SERVER["REQUEST_URI"];
 $auxCounter = 2;
 
+parse_str(file_get_contents('php://input'), $data); 
 //TRATAMENTO DE URI
 $ex = explode("/", $uri);
 
@@ -35,9 +36,45 @@ if (isset($ex[1])) {
     $id = $ex[1];
 }
 
+$userEventController = new \app\controller\EventController();
+switch ($method) {
+
+    case 'GET':
+        if ($controller != null && $id == null) {
+            echo $userEventController->getAll();
+        }
+        else if ($controller != null && $id != null) {
+            echo $userEventController->getById($id);
+        }
+        else echo json_encode(["erro" => "true"]);
+        break;
+
+    case 'POST':
+        if ($controller != null && $id == null) {
+            echo $userEventController->create($data);
+        }
+        else echo json_encode(["erro" => "true"]);
+        break;
+
+    case 'PUT':
+        if ($controller != null && $id != null) {
+            echo $userEventController->update($id, $data);
+        }
+        else echo json_encode(["erro" => "true"]);
+        break;
+
+    case 'DELETE':
+        if ($controller != null && $id != null) {
+            echo $userEventController->delete($id, $data);
+        }
+        else echo json_encode(["erro" => "true"]);
+        break;
+    
+    default:
+        echo json_encode(["erro" => "true"]);
+        break;
+}
 
 
-parse_str(file_get_contents('php://input'), $data); 
-echo json_encode(["controller" => $controller, "id" => $id]);
 
 ?>
