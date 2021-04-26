@@ -26,6 +26,8 @@ for($i = 0; $i < $auxCounter; $i++){
     unset($ex[$i]);
 }
 
+$ex = array_filter(array_values($ex));
+
 if (isset($ex[0])) {
     $controller = $ex[0];
 }
@@ -33,7 +35,7 @@ if (isset($ex[1])) {
     $id = $ex[1];
 }
 
-$ex = array_filter(array_values($ex));
+
 
 parse_str(file_get_contents('php://input'), $data); 
 echo json_encode(["controller" => $controller, "id" => $id]);
