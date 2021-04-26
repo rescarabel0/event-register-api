@@ -1,0 +1,7 @@
+______ENDPOINT
+
+GET    = /event     -> retorna TODOS os eventos
+GET    = /event/:id -> retorna evento pelo id
+POST   = /event     -> cria novo evento
+PUT    = /event/:id -> edita um evento
+DELETE = /event/:id -> deleta um evento
