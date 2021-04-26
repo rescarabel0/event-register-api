@@ -1,6 +1,6 @@
 <?php
     namespace App\Entity;
-    class Evento{
+    class Event{
         
         private $id;
         private $titulo;

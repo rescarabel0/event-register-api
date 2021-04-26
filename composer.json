@@ -1,0 +1,16 @@
+{
+    "name": "rafael/my-first-api",
+    "description": "Minha primeira API",
+    "authors" : [
+        {
+            "name" : "Rafael Escarabelo",
+            "email" : "r.escarabelo@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload" : {
+        "psr-4" : {
+            "app\\" : "app/"
+        }
+    }
+}
