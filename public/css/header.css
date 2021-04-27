@@ -1,5 +1,8 @@
 header {
     padding: 50px;
     text-align: center;
-    
+}
+.navbar {
+    border-bottom: 1px black dashed;
+    margin-bottom: 15px;
 }
