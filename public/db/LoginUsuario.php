@@ -2,11 +2,6 @@
 session_start();
 include('../../app/db.app/conection.php');
 
-if(empty($_POST['usuario']) || empty($_POST['senha'])) {
-    header('Location: ../index.html');
-    exit();
-}
-
 $usuario = mysqli_real_escape_string($conexao, $_POST['username']);
 $senha = mysqli_real_escape_string($conexao, $_POST['password']);
 
@@ -21,11 +16,16 @@ if($row == 1) {
     $_SESSION['user'] = $usuario;
     $_SESSION['usuario_id'] = $row_b[0];
     $_SESSION['autenticado'] = true;
-
-    header('Location: ../index.html');
-    exit();
+    
+    $status = array(
+        'status' => 'ok'
+    );
+    if (isset($_POST)) echo json_encode($status); exit;
 } else {
     $_SESSION['autenticado'] = false;
-    header('Location: ../index.html');
-    exit(1);
+
+    $status = array(
+        'status' => 'error'
+    );
+    if (isset($_POST)) echo json_encode($status); exit;
 }

@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
     $(document).on("submit", "#userCadForm", function(e){
         e.preventDefault();
@@ -9,8 +10,14 @@ $(document).ready(function(){
     $(document).on("submit", "#userLogForm", function(e){
         e.preventDefault();
         let data = $(this).serialize();
-        $.post("/db/LoginUsuario.php", data, function(){
-            alert("Logged in succesfully!");
+        $.post("/db/LoginUsuario.php", data, function(result){
+            let msg = responseTreatment(result);
+            let status = false;
+            for (let i in msg) {
+                if(msg[i] == "ok") status = true;
+            }
+            if(status == true) alert("Logged in!");
+            else alert("Error, try again later");
         });
     });
     $(document).on("click", "#loginBtn", function(e){
@@ -26,8 +33,9 @@ $(document).ready(function(){
 function formLogin(){
     let form = $("<form>");
         form.attr("id", "userLogForm");
+    
     let div1 = document.createElement("div");
-        div1.className = "field";
+        div1.className = "field alert";
         div1.innerHTML = '<label class="label" for="username">Username:</label><div class="control"><input type="text" name="username" class="input" placeholder="Jhon Doe" required></div>'
     $(form).append(div1);                        
     let div2 = document.createElement("div");
@@ -61,4 +69,9 @@ function formCad(){
         div4.innerHTML = '<div class="control"><button type="submit" class="button is-primary">Submit</button></div><div class="control"><button type="reset" class="button is-danger">Reset</button></div>'
     $(form).append(div4);                       
     $("form").replaceWith(form);
+}
+
+function responseTreatment(response){
+    let json = JSON.parse(response);
+    return json;
 }
