@@ -63,14 +63,23 @@ class EventController{
             return "invalid description";
         }
 
-        if ($event->getDataDay() <= 0 || $event->getDataDay() > 31) {
-            return "invalid day date";
+        if ($event->getStartDay() > 31 || $event->getStartDay() <= 0) {
+            return "invalid start day";
         }
-        if ($event->getDataMonth() <= 0 || $event->getDataMonth() > 12) {
-            return "invalid month date";
+        if ($event->getEndDay() > 31 || $event->getEndDay() <= 0) {
+            return "invalid end day";
         }
-        if ($event->getDataYear() < 2021) {
-            return "invalid year date";
+        if ($event->getEndMonth() > 12 || $event->getEndMonth() < 0) {
+            return "invalid end Month";
+        }
+        if ($event->getStartMonth() > 12 || $event->getStartMonth() <= 0) {
+            return "invalid start Month";
+        }
+        if ($event->getStartYear() < 2021) {
+            return "invalid start Year";
+        }
+        if ($event->getEndYear() < 2021) {
+            return "invalid end Year";
         }
 
         if ($event->getUserId() <= 0) {
