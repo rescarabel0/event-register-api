@@ -6,25 +6,35 @@
         private $titulo;
         private $descricao;
         private $userId;
+
+        private $start;
         private $startHour;
         private $startMinute;
         private $startSeconds;
+
+        private $end;
         private $endHour;
         private $endMinute;
         private $endSeconds;
 
         //Construtor
-        public function __construct ($id = '', $titulo = '', $descricao = '', $userId = '', $startHour = '', $startMinute = '', $startSeconds = '', $endHour = '', $endMinute = '', $endSeconds = ''){
+        public function __construct ($id = '', $titulo = '', $descricao = '', $userId = '', $start = '', $end = ''){
             $this->id = $id;
             $this->titulo = $titulo;
             $this->descricao = $descricao;
             $this->userId = $userId;
-            $this->startHour = $startHour;
-            $this->startMinute = $startMinute;
-            $this->startSeconds = $startSeconds;
-            $this->endHour = $endHour;
-            $this->endMinute = $endMinute;
-            $this->endSeconds = $endSeconds;
+            $this->start = $start;
+            
+            preg_match("/([0-9]{1,2}):([0-9]{1,2}) ([a-zA-Z]+)/", $start, $match);
+            $this->startHour = $match[1];
+            $this->startMinute = $match[2];
+            $this->startSeconds = $match[3];
+            $this->end = $end;
+
+            preg_match("/([0-9]{1,2}):([0-9]{1,2}) ([a-zA-Z]+)/", $end, $matchB);
+            $this->endHour = $matchB[1];
+            $this->endMinute = $matchB[2];
+            $this->endSeconds = $matchB[3];
         }
         
         //Setter & Getter 
@@ -81,88 +91,34 @@
                 return $this;
         }
 
-
-        //Setter & Getter        
-        public function getEndHour()
-        {
-                return $this->endHour;
-        }
-
-        
-        public function setEndHour($endHour)
-        {
-                $this->endHour = $endHour;
-
-                return $this;
-        }
-
         //Setter & Getter  
-        public function getStartHour()
+        public function getStart()
         {
-                return $this->startHour;
+                return $this->start;
         }
 
         
-        public function setStartHour($startHour)
+        public function setStart($start)
         {
-                $this->startHour = $startHour;
+                $this->start = $start;
 
                 return $this;
         }
 
         
-        public function getStartMinute()
+        public function getEnd()
         {
-                return $this->startMinute;
+                return $this->end;
         }
 
         
-        public function setStartMinute($startMinute)
+        public function setEnd($end)
         {
-                $this->startMinute = $startMinute;
+                $this->end = $end;
 
                 return $this;
         }
 
         
-        public function getStartSeconds()
-        {
-                return $this->startSeconds;
-        }
-
         
-        public function setStartSeconds($startSeconds)
-        {
-                $this->startSeconds = $startSeconds;
-
-                return $this;
-        }
-
-        
-        public function getEndMinute()
-        {
-                return $this->endMinute;
-        }
-
-        
-        public function setEndMinute($endMinute)
-        {
-                $this->endMinute = $endMinute;
-
-                return $this;
-        }
-
-        
-        public function getEndSeconds()
-        {
-                return $this->endSeconds;
-        }
-
-        
-        public function setEndSeconds($endSeconds)
-        {
-                $this->endSeconds = $endSeconds;
-
-                return $this;
-        }
     }

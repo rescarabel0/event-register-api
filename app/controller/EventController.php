@@ -2,15 +2,23 @@
 
 namespace app\controller;
 use app\entity\Event;
+use app\model\EventModel;
+include('../db.app/conection.php');
 
 class EventController{
 
+    
     function insert($data = null){
         $event = $this->convertDataToEventJson($data);
         $result = $this->validate($event);
 
         if ($result != "") {
             echo json_encode(["erro" => $result]);
+        } else {
+            $title = mysqli_real_escape_string($conexao, trim($_POST['titulo']));
+            $description = mysqli_real_escape_string($conexao, trim($_POST['descricao']));
+            $start = mysqli_real_escape_string($conexao, trim($_POST['start']));
+            $end = mysqli_real_escape_string($conexao, trim($_POST['end']));
         }
     }
 
@@ -43,13 +51,9 @@ class EventController{
             (isset($data['titulo']) ? $data['titulo'] : null),
             (isset($data['descricao']) ? $data['descricao'] : null),
 
-            (isset($data['startHour']) ? $data['startHour'] : null),
-            (isset($data['startMinute']) ? $data['startMinute'] : null),
-            (isset($data['startSeconds']) ? $data['startSeconds'] : null),
-
-            (isset($data['endHour']) ? $data['endHour'] : null),
-            (isset($data['endMinute']) ? $data['endMinute'] : null),
-            (isset($data['endSeconds']) ? $data['endSeconds'] : null),
+            (isset($data['start']) ? $data['start'] : null),
+            
+            (isset($data['end']) ? $data['end'] : null),
             
             (isset($data['userId']) ? $data['userId'] : null),
         );
@@ -69,10 +73,10 @@ class EventController{
             return "invalid description";
         }
 
-        if ($event->getStartHour() == null && $event->getStartMinute() == null && $event->getStartSeconds() == null) {
+        if ($event->getStart() == null) {
             return "invalid start time";
         }
-        if ($event->getEndHour() == null && $event->getEndMinute() == null && $event->getEndSeconds() == null) {
+        if ($event->getEnd() == null) {
             return "invalid end time";
         }
 

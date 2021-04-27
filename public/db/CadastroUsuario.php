@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('conection.php');
+include('../../app/db.app/conection.php');
 
 $email = mysqli_real_escape_string($conexao, trim($_POST['email']));
 $usuario = mysqli_real_escape_string($conexao, trim($_POST['username']));
