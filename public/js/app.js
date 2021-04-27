@@ -16,7 +16,11 @@ $(document).ready(function(){
             for (let i in msg) {
                 if(msg[i] == "ok") status = true;
             }
-            if(status == true) alert("Logged in!");
+            if(status == true){
+                alert("Logged in!"); 
+                location.reload(); 
+                return false;
+            } 
             else alert("Error, try again later");
         });
     });
