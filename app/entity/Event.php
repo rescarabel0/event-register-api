@@ -6,25 +6,25 @@
         private $titulo;
         private $descricao;
         private $userId;
-        private $startDay;
-        private $startMonth;
-        private $startYear;
-        private $endDay;
-        private $endMonth;
-        private $endYear;
+        private $startHour;
+        private $startMinute;
+        private $startSeconds;
+        private $endHour;
+        private $endMinute;
+        private $endSeconds;
 
         //Construtor
-        public function __construct ($id = '', $titulo = '', $descricao = '', $userId = '', $startDay = '', $startMonth = '', $startYear = '', $endDay = '', $endMonth = '', $endYear = ''){
+        public function __construct ($id = '', $titulo = '', $descricao = '', $userId = '', $startHour = '', $startMinute = '', $startSeconds = '', $endHour = '', $endMinute = '', $endSeconds = ''){
             $this->id = $id;
             $this->titulo = $titulo;
             $this->descricao = $descricao;
             $this->userId = $userId;
-            $this->startDay = $startDay;
-            $this->startMonth = $startMonth;
-            $this->startYear = $startYear;
-            $this->endDay = $endDay;
-            $this->endMonth = $endMonth;
-            $this->endYear = $endYear;
+            $this->startHour = $startHour;
+            $this->startMinute = $startMinute;
+            $this->startSeconds = $startSeconds;
+            $this->endHour = $endHour;
+            $this->endMinute = $endMinute;
+            $this->endSeconds = $endSeconds;
         }
         
         //Setter & Getter 
@@ -83,85 +83,85 @@
 
 
         //Setter & Getter        
-        public function getEndDay()
+        public function getEndHour()
         {
-                return $this->endDay;
+                return $this->endHour;
         }
 
         
-        public function setEndDay($endDay)
+        public function setEndHour($endHour)
         {
-                $this->endDay = $endDay;
+                $this->endHour = $endHour;
 
                 return $this;
         }
 
         //Setter & Getter  
-        public function getStartDay()
+        public function getStartHour()
         {
-                return $this->startDay;
+                return $this->startHour;
         }
 
         
-        public function setStartDay($startDay)
+        public function setStartHour($startHour)
         {
-                $this->startDay = $startDay;
+                $this->startHour = $startHour;
 
                 return $this;
         }
 
         
-        public function getStartMonth()
+        public function getStartMinute()
         {
-                return $this->startMonth;
+                return $this->startMinute;
         }
 
         
-        public function setStartMonth($startMonth)
+        public function setStartMinute($startMinute)
         {
-                $this->startMonth = $startMonth;
+                $this->startMinute = $startMinute;
 
                 return $this;
         }
 
         
-        public function getStartYear()
+        public function getStartSeconds()
         {
-                return $this->startYear;
+                return $this->startSeconds;
         }
 
         
-        public function setStartYear($startYear)
+        public function setStartSeconds($startSeconds)
         {
-                $this->startYear = $startYear;
+                $this->startSeconds = $startSeconds;
 
                 return $this;
         }
 
         
-        public function getEndMonth()
+        public function getEndMinute()
         {
-                return $this->endMonth;
+                return $this->endMinute;
         }
 
         
-        public function setEndMonth($endMonth)
+        public function setEndMinute($endMinute)
         {
-                $this->endMonth = $endMonth;
+                $this->endMinute = $endMinute;
 
                 return $this;
         }
 
         
-        public function getEndYear()
+        public function getEndSeconds()
         {
-                return $this->endYear;
+                return $this->endSeconds;
         }
 
         
-        public function setEndYear($endYear)
+        public function setEndSeconds($endSeconds)
         {
-                $this->endYear = $endYear;
+                $this->endSeconds = $endSeconds;
 
                 return $this;
         }

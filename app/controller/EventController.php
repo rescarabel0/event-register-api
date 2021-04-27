@@ -42,9 +42,15 @@ class EventController{
             null,
             (isset($data['titulo']) ? $data['titulo'] : null),
             (isset($data['descricao']) ? $data['descricao'] : null),
-            (isset($data['dataDay']) ? $data['dataDay'] : null),
-            (isset($data['dataMonth']) ? $data['dataMonth'] : null),
-            (isset($data['dataYear']) ? $data['dataYear'] : null),
+
+            (isset($data['startHour']) ? $data['startHour'] : null),
+            (isset($data['startMinute']) ? $data['startMinute'] : null),
+            (isset($data['startSeconds']) ? $data['startSeconds'] : null),
+
+            (isset($data['endHour']) ? $data['endHour'] : null),
+            (isset($data['endMinute']) ? $data['endMinute'] : null),
+            (isset($data['endSeconds']) ? $data['endSeconds'] : null),
+            
             (isset($data['userId']) ? $data['userId'] : null),
         );
     }
@@ -63,23 +69,11 @@ class EventController{
             return "invalid description";
         }
 
-        if ($event->getStartDay() > 31 || $event->getStartDay() <= 0) {
-            return "invalid start day";
+        if ($event->getStartHour() == null && $event->getStartMinute() == null && $event->getStartSeconds() == null) {
+            return "invalid start time";
         }
-        if ($event->getEndDay() > 31 || $event->getEndDay() <= 0) {
-            return "invalid end day";
-        }
-        if ($event->getEndMonth() > 12 || $event->getEndMonth() < 0) {
-            return "invalid end Month";
-        }
-        if ($event->getStartMonth() > 12 || $event->getStartMonth() <= 0) {
-            return "invalid start Month";
-        }
-        if ($event->getStartYear() < 2021) {
-            return "invalid start Year";
-        }
-        if ($event->getEndYear() < 2021) {
-            return "invalid end Year";
+        if ($event->getEndHour() == null && $event->getEndMinute() == null && $event->getEndSeconds() == null) {
+            return "invalid end time";
         }
 
         if ($event->getUserId() <= 0) {
