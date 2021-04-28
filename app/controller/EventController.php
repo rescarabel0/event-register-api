@@ -19,7 +19,9 @@ class EventController{
             echo json_encode(["erro" => $result]);
         }
         
-        $this->eventModel->create($event);
+        if($this->eventModel->create($event) == "ok"){
+            echo "ok";
+        }
     }
 
     function update($data = null, $id = 0){
