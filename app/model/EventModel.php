@@ -42,11 +42,25 @@ class EventModel{
         $start = mysqli_real_escape_string($conexao, $temp['start']);
         $end = mysqli_real_escape_string($conexao, $temp['end']);
 
-        $sql = "INSERT INTO event (userId, titulo, descricao, start, end) VALUES ('$userId','$titulo','$descricao', '$start', '$end')";
-        if ($conexao->query($sql) === True) {
-            $_SESSION['evento_cadastrado'] = true;
+        $sql = "select count(*) as total from event where titulo = '$titulo'";
+        $result = mysqli_query($conexao, $sql);
+        $row = mysqli_fetch_assoc($result);
+
+        if($row['total'] == 1) {
+            $sql = "UPDATE event SET userId = '$userId', titulo = '$titulo', descricao = '$descricao', start = '$start', end = '$end' WHERE titulo = '$titulo'";
+            if ($conexao->query($sql) === True) {
+                $_SESSION['event_updated'] = true;
+            }
+            $conexao->close();
+        } else {
+            $sql = "INSERT INTO event (userId, titulo, descricao, start, end) VALUES ('$userId','$titulo','$descricao', '$start', '$end')";
+            if ($conexao->query($sql) === True) {
+                $_SESSION['evento_cadastrado'] = true;
+            }
+            $conexao->close();
         }
-        $conexao->close();
+
+        
     }
     private function load(){
 

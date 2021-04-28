@@ -31,6 +31,8 @@ class EventController{
         if ($result != "") {
             echo json_encode(["erro" => $result]);
         }
+
+        $this->eventModel->create($event);
     }
 
     function delete($id = 0){

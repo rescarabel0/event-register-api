@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('../../app/db.app/conection.php');
+include('../../app/dbApp/conection.php');
 
 $email = mysqli_real_escape_string($conexao, trim($_POST['email']));
 $usuario = mysqli_real_escape_string($conexao, trim($_POST['username']));
@@ -20,10 +20,12 @@ $sql = "INSERT INTO users (email, username, password, data_cadastro) VALUES ('$e
 
 if($conexao->query($sql) === TRUE) {
     $_SESSION['cadastrado'] = true;
+    echo "ok";
+} else {
+    echo "erro";
 }
 
 $conexao->close();
 
-header('Location: ../index.html');
 exit;
 ?>

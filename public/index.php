@@ -32,7 +32,7 @@ session_start();
                 <div class="navbar-menu">
                     <div class="navbar-start">
                         <div class="navbar-item">
-                            <a class="button is-dark">Início</a>
+                            <a class="button is-dark" id="getEventsBtn">Início</a>
                         </div>
                     </div>
                     <div class="navbar-end">
@@ -53,11 +53,21 @@ session_start();
     </nav>
     <?php 
         if(isset($_SESSION['autenticado']))
-        echo "<section class='container'>
-                    <div id='newEvent' class='notification is-info'>
-                        <p>REGISTER NEW EVENT</p>
+        echo "
+        <section id='target'>
+            <div class='columns'>
+                <div class='column'></div>
+                    <div id='mainColumn' class='column'>
+                        <section class='container'>
+                                <div id='newEvent' class='notification is-info'>
+                                    <p>REGISTER NEW EVENT</p>
+                                </div>
+                        </section>
+                        <form></form>
                     </div>
-            </section>";
+                <div class='column'></div>
+            </div>
+        </section>";
         else
         echo "<section id='target'>
                 <div class='columns'>
@@ -96,7 +106,6 @@ session_start();
                 </div>
             </section>";
     ?>
-    
 
 
 </body>
