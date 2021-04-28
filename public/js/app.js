@@ -33,9 +33,7 @@ $(document).ready(function(){
         e.preventDefault();
         let data = $(this).serialize();
         $.post("../api/index.php", data, function(result){
-            if (result === "ok") {
-                alert("Evento cadastrado com sucesso!");
-            }
+            alert("Evento cadastrado com sucesso!");
         });
         location.reload();
     });

@@ -18,11 +18,11 @@
         $(form).append(div2);                        
         let div3 = document.createElement("div");
             div3.className = "field";
-            div3.innerHTML = '<label for="start" class="label">Starts at:</label><div class="control"><input type="text" name="start" class="input" placeholder="HH:MM:SS" required></div>'
+            div3.innerHTML = '<label for="start" class="label">Starts at:</label><div class="control"><input type="text" name="start" class="input" placeholder="HH:MM:SS" pattern="([0-1]{1}[0-9]{1}|20|21|22|23):[0-5]{1}[0-9]{1}" required></div>'
         $(form).append(div3);                        
         let div5 = document.createElement("div");
             div5.className = "field";
-            div5.innerHTML = '<label for="end" class="label">Ends at:</label><div class="control"><input type="text" name="end" class="input" placeholder="HH:MM:SS" required></div>'
+            div5.innerHTML = '<label for="end" class="label">Ends at:</label><div class="control"><input type="text" name="end" class="input" placeholder="HH:MM:SS" pattern="([0-1]{1}[0-9]{1}|20|21|22|23):[0-5]{1}[0-9]{1}"  required></div>'
         $(form).append(div5);
         <?php $idUsuario = $_SESSION['usuario_id']; ?>                
         let div6 = document.createElement("div");

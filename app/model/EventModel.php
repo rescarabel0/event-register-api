@@ -15,8 +15,14 @@ class EventModel{
 
     function create(Event $event){
         $this->eventList[] = $event;
-        $this->save();
-        return "ok";
+        if($this->save() != "erro")
+            return "ok";
+        else 
+            return "erro";
+    }
+
+    function update(Event $event, $id){
+
     }
 
     private function save(){
@@ -42,16 +48,12 @@ class EventModel{
         $start = mysqli_real_escape_string($conexao, $temp['start']);
         $end = mysqli_real_escape_string($conexao, $temp['end']);
 
-        $sql = "select count(*) as total from event where titulo = '$titulo'";
+        $sql = "select count(*) as total from event where titulo = '$titulo' and descricao = '$descricao' and start = '$start' and end = '$end'";
         $result = mysqli_query($conexao, $sql);
         $row = mysqli_fetch_assoc($result);
 
         if($row['total'] == 1) {
-            $sql = "UPDATE event SET userId = '$userId', titulo = '$titulo', descricao = '$descricao', start = '$start', end = '$end' WHERE titulo = '$titulo'";
-            if ($conexao->query($sql) === True) {
-                $_SESSION['event_updated'] = true;
-            }
-            $conexao->close();
+            return "erro";
         } else {
             $sql = "INSERT INTO event (userId, titulo, descricao, start, end) VALUES ('$userId','$titulo','$descricao', '$start', '$end')";
             if ($conexao->query($sql) === True) {

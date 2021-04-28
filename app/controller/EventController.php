@@ -21,6 +21,8 @@ class EventController{
         
         if($this->eventModel->create($event) == "ok"){
             echo "ok";
+        } else {
+            echo "evento ja existente";
         }
     }
 
