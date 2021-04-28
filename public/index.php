@@ -54,7 +54,7 @@ session_start();
     <?php 
         if(isset($_SESSION['autenticado']))
         echo "<section class='container'>
-                    <div class='notification is-info'>
+                    <div id='newEvent' class='notification is-info'>
                         <p>REGISTER NEW EVENT</p>
                     </div>
             </section>";

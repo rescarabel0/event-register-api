@@ -3,10 +3,13 @@
 namespace app\controller;
 use app\entity\Event;
 use app\model\EventModel;
-include('../db.app/conection.php');
 
 class EventController{
+    private $eventModel;
 
+    function __construct(){
+        $this->eventModel = new EventModel();
+    }
     
     function insert($data = null){
         $event = $this->convertDataToEventJson($data);
@@ -14,12 +17,9 @@ class EventController{
 
         if ($result != "") {
             echo json_encode(["erro" => $result]);
-        } else {
-            $title = mysqli_real_escape_string($conexao, trim($_POST['titulo']));
-            $description = mysqli_real_escape_string($conexao, trim($_POST['descricao']));
-            $start = mysqli_real_escape_string($conexao, trim($_POST['start']));
-            $end = mysqli_real_escape_string($conexao, trim($_POST['end']));
         }
+        
+        $this->eventModel->create($event);
     }
 
     function update($data = null, $id = 0){
@@ -50,12 +50,11 @@ class EventController{
             null,
             (isset($data['titulo']) ? $data['titulo'] : null),
             (isset($data['descricao']) ? $data['descricao'] : null),
+            (isset($data['userId']) ? $data['userId'] : null),
 
             (isset($data['start']) ? $data['start'] : null),
             
-            (isset($data['end']) ? $data['end'] : null),
-            
-            (isset($data['userId']) ? $data['userId'] : null),
+            (isset($data['end']) ? $data['end'] : null)           
         );
     }
     
@@ -80,9 +79,6 @@ class EventController{
             return "invalid end time";
         }
 
-        if ($event->getUserId() <= 0) {
-            return "invalid user id";
-        }
         return "";
     }
 }

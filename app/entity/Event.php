@@ -23,18 +23,10 @@
             $this->titulo = $titulo;
             $this->descricao = $descricao;
             $this->userId = $userId;
+
             $this->start = $start;
             
-            preg_match("/([0-9]{1,2}):([0-9]{1,2}) ([a-zA-Z]+)/", $start, $match);
-            $this->startHour = $match[1];
-            $this->startMinute = $match[2];
-            $this->startSeconds = $match[3];
             $this->end = $end;
-
-            preg_match("/([0-9]{1,2}):([0-9]{1,2}) ([a-zA-Z]+)/", $end, $matchB);
-            $this->endHour = $matchB[1];
-            $this->endMinute = $matchB[2];
-            $this->endSeconds = $matchB[3];
         }
         
         //Setter & Getter 

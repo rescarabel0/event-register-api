@@ -32,6 +32,10 @@ $(document).ready(function(){
         e.preventDefault();
         formCad();
     });
+    $(document).on("click", "#newEvent", function(e){
+        e.preventDefault();
+        
+    })
 })
 
 function formLogin(){
