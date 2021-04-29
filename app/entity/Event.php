@@ -8,14 +8,10 @@
         private $userId;
 
         private $start;
-        private $startHour;
-        private $startMinute;
-        private $startSeconds;
+        
 
         private $end;
-        private $endHour;
-        private $endMinute;
-        private $endSeconds;
+        
 
         //Construtor
         public function __construct ($id = '', $titulo = '', $descricao = '', $userId = '', $start = '', $end = ''){

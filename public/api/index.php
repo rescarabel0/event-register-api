@@ -43,6 +43,9 @@ switch ($method) {
         if ($controller != null && $id == null) {
             echo $userEventController->getAll();
         }
+        else if ($controller != null && $id != null) {
+            echo $userEventController->getById($id);
+        }
         else echo json_encode(["erro" => "true"]);
         break;
 
@@ -54,7 +57,7 @@ switch ($method) {
         break;
 
     case 'PUT':
-        if ($controller != null && $id != null) {
+        if ($controller != null) {
             echo $userEventController->update($id, $data);
         }
         else echo json_encode(["erro" => "true"]);

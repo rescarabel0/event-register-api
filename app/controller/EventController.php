@@ -27,16 +27,7 @@ class EventController{
     }
 
     function update($data = null, $id = 0){
-        $event = $this->convertDataToEventJson($data);
-        $event->setId($id);
-
-        $result = $this->validate($event, true);
-
-        if ($result != "") {
-            echo json_encode(["erro" => $result]);
-        }
-
-        $this->eventModel->create($event);
+        
     }
 
     function delete($id = 0){
@@ -45,6 +36,10 @@ class EventController{
 
     function getAll(){
         return $this->eventModel->list();
+    }
+
+    function getById($id = 0){
+        return $this->eventModel->listId($id);
     }
 
     private function convertDataToEventJson($data){

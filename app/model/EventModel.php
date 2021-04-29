@@ -8,6 +8,7 @@ use app\entity\Event;
 class EventModel{
     private $data;
     private $eventList = [];
+    private Event $eventEd;
     
     function __construct(){
         $this->data = "";
@@ -21,12 +22,14 @@ class EventModel{
             echo "erro";
     }
 
-    function update(Event $event, $id){
-
-    }
+    
 
     function list(){
         $this->load();
+    }
+
+    function listId($id){
+        $this->loadById($id);
     }
 
     private function save(){
@@ -70,15 +73,15 @@ class EventModel{
     }
     private function load(){
         $conexao = mysqli_connect(HOST, USUARIO, SENHA, DB) or die ('Não foi possível conectar');
-        $idUser = isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : 1;
+        $idUser = isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : 2;
         $eventos = "SELECT * from event where userId = '$idUser'";
         $res = mysqli_query($conexao, $eventos);
         $row = mysqli_fetch_all($res);
-        
-        $temp;
 
+        $temp;
+        
         foreach ($row as $e) {
-            $temp[] = array(
+            $temp = array(
                 "id" => $e[0],
                 "userId" => $e[1],
                 "titulo" => $e[2],
@@ -93,7 +96,8 @@ class EventModel{
     private function loadById($id){
         $conexao = mysqli_connect(HOST, USUARIO, SENHA, DB) or die ('Não foi possível conectar');
         $idUser = isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : 1;
-        $eventos = "SELECT * from event where userId = '$idUser' and id = '$id'";
+        $idEvento = $id['id'];
+        $eventos = "SELECT * from event where userId = '$idUser' and id = '$idEvento'";
         $res = mysqli_query($conexao, $eventos);
         $row = mysqli_fetch_all($res);
 
@@ -109,7 +113,46 @@ class EventModel{
                 "end" => $e[5]
             );
         }
+
         echo json_encode($temp);
+    }
+
+    function update(Event $event, $id){
+        $eventEdit[] = $event;
+
+        $temp;
+
+        foreach ($this->eventEdit as $e) {
+            $temp = array(
+                "titulo" => $e->getTitulo(),
+                "descricao" => $e->getDescricao(),
+                "start" => $e->getStart(),
+                "end" => $e->getEnd(),
+                "userId" => $e->getUserId()
+            );
+        }
+
+        $string = json_encode($temp);
+
+        $conexao = mysqli_connect(HOST, USUARIO, SENHA, DB) or die ('Não foi possível conectar');
+
+        $titulo = mysqli_real_escape_string($conexao, trim($temp['titulo']));
+        $descricao = mysqli_real_escape_string($conexao, trim($temp['descricao']));
+        $userId = mysqli_real_escape_string($conexao, $temp['userId']);
+        $start = mysqli_real_escape_string($conexao, $temp['start']);
+        $end = mysqli_real_escape_string($conexao, $temp['end']);
+
+        $sql = "select count(*) as total from event where id = '$id' and userId = '$userId'";
+        $result = mysqli_query($conexao, $sql);
+        $row = mysqli_fetch_assoc($result);
+
+        if($row['total'] == 1) {
+            $sql = "UPDATE event SET titulo = '$titulo', descricao = '$descricao', start='$start', end='$end' WHERE userId='$userId' and id='$id'";
+            if ($conexao->query($sql) === True) {
+                $_SESSION['evento_editado'] = true;
+            }
+            $conexao->close();
+        } 
     }
 }
 
