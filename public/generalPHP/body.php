@@ -9,6 +9,9 @@
                             <div id='newEvent' class='notification is-info'>
                                 <p>REGISTER NEW EVENT</p>
                             </div>
+                            <div id='getEventsBtn' class='notification is-warning'>
+                                <p>SEE MY EVENTS</p>
+                            </div>
                     </section>
                     <form></form>
                 </div>

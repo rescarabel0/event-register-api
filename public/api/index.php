@@ -43,9 +43,6 @@ switch ($method) {
         if ($controller != null && $id == null) {
             echo $userEventController->getAll();
         }
-        else if ($controller != null && $id != null) {
-            echo $userEventController->getById($id);
-        }
         else echo json_encode(["erro" => "true"]);
         break;
 
@@ -65,7 +62,7 @@ switch ($method) {
 
     case 'DELETE':
         if ($controller != null && $id != null) {
-            echo $userEventController->delete($id, $data);
+            echo $userEventController->delete($id);
         }
         else echo json_encode(["erro" => "true"]);
         break;

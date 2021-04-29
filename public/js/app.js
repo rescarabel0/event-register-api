@@ -45,10 +45,7 @@ $(document).ready(function(){
         e.preventDefault();
         formCad();
     });
-    $(document).on("click", "#getEventsBtn", function(e){
-        e.preventDefault();
-        // GET todos os eventos;
-    })
+    
 })
 
 function formLogin(){
@@ -57,11 +54,11 @@ function formLogin(){
     
     let div1 = document.createElement("div");
         div1.className = "field alert";
-        div1.innerHTML = '<label class="label" for="username">Username:</label><div class="control"><input type="text" name="username" class="input" placeholder="Jhon Doe" required></div>'
+        div1.innerHTML = '<label class="label" for="username">Username</label><div class="control"><input type="text" name="username" class="input" placeholder="Jhon Doe" required></div>'
     $(form).append(div1);                        
     let div2 = document.createElement("div");
         div2.className = "field";
-        div2.innerHTML = '<label for="password" class="label">Password:</label><div class="control"><input type="password" name="password" class="input" placeholder="********" required></div>'
+        div2.innerHTML = '<label for="password" class="label">Password</label><div class="control"><input type="password" name="password" class="input" placeholder="********" required></div>'
     $(form).append(div2);                        
     let div4 = document.createElement("div");
         div4.className = "field";
@@ -75,15 +72,15 @@ function formCad(){
         form.attr("id", "userCadForm");
     let div1 = document.createElement("div");
         div1.className = "field";
-        div1.innerHTML = '<label class="label" for="username">Username:</label><div class="control"><input type="text" name="username" class="input" placeholder="Jhon Doe" required></div>'
+        div1.innerHTML = '<label class="label" for="username">Username</label><div class="control"><input type="text" name="username" class="input" placeholder="John Doe" required></div>'
     $(form).append(div1);                        
     let div2 = document.createElement("div");
         div2.className = "field";
-        div2.innerHTML = '<label for="email" class="label">Email:</label><div class="control"><input type="text" name="email" class="input" placeholder="john.doe@example.com" required></div>'
+        div2.innerHTML = '<label for="email" class="label">Email</label><div class="control"><input type="text" name="email" class="input" placeholder="john.doe@example.com" required></div>'
     $(form).append(div2);                        
     let div3 = document.createElement("div");
         div3.className = "field";
-        div3.innerHTML = '<label for="password" class="label">Password:</label><div class="control"><input type="password" name="password" class="input" placeholder="********" required></div>'
+        div3.innerHTML = '<label for="password" class="label">Password</label><div class="control"><input type="password" name="password" class="input" placeholder="********" required></div>'
     $(form).append(div3);                        
     let div4 = document.createElement("div");
         div4.className = "field is-grouped";

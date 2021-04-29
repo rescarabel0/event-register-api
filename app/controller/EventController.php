@@ -22,7 +22,7 @@ class EventController{
         if($this->eventModel->create($event) == "ok"){
             echo "ok";
         } else {
-            echo "evento ja existente";
+            echo "error";
         }
     }
 
@@ -43,12 +43,8 @@ class EventController{
         return json_encode(["name" => "delete"]);
     }
 
-    function getById($id = 0){
-        return json_encode(["name" => "getbyid - {$id}"]);
-    }
-
     function getAll(){
-        return json_encode(["name" => "getall"]);
+        return $this->eventModel->list();
     }
 
     private function convertDataToEventJson($data){
@@ -81,7 +77,7 @@ class EventController{
         if ($event->getStart() == null) {
             return "invalid start time";
         }
-        if ($event->getEnd() == null) {
+        if ($event->getEnd() == null || $event->getEnd() > $event->getStart()) {
             return "invalid end time";
         }
 

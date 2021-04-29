@@ -16,13 +16,17 @@ class EventModel{
     function create(Event $event){
         $this->eventList[] = $event;
         if($this->save() != "erro")
-            return "ok";
+            echo "ok";
         else 
-            return "erro";
+            echo "erro";
     }
 
     function update(Event $event, $id){
 
+    }
+
+    function list(){
+        $this->load();
     }
 
     private function save(){
@@ -65,6 +69,24 @@ class EventModel{
         
     }
     private function load(){
+        $conexao = mysqli_connect(HOST, USUARIO, SENHA, DB) or die ('Não foi possível conectar');
+        $idUser = isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : 1;
+        $eventos = "SELECT * from event where userId = '$idUser'";
+        $res = mysqli_query($conexao, $eventos);
+        $row = mysqli_fetch_all($res);
+        
+        $temp;
 
+        foreach ($row as $e) {
+            $temp[] = array(
+                "id" => $e[0],
+                "userId" => $e[1],
+                "titulo" => $e[2],
+                "descricao" => $e[3],
+                "start" => $e[4],
+                "end" => $e[5]
+            );
+        }
+        echo json_encode($temp);
     }
 }
