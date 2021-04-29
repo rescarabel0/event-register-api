@@ -5,7 +5,7 @@ require_once("../../vendor/autoload.php");
 
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: GET,POST,PUT,DELETE");
+header("Access-Control-Allow-Methods: GET,POST,DELETE");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
@@ -32,9 +32,12 @@ $ex = array_filter(array_values($ex));
 if (isset($ex[0])) {
     $controller = $ex[0];
 }
-if (isset($ex[1])) {
-    $id = $ex[1];
+
+if (array_key_exists('id', $data)) {
+    $id = $data['id'];
 }
+
+
 
 $userEventController = new \app\controller\EventController();
 switch ($method) {
@@ -52,13 +55,8 @@ switch ($method) {
     case 'POST':
         if ($controller != null && $id == null) {
             echo $userEventController->insert($data);
-        }
-        else echo json_encode(["erro" => "true"]);
-        break;
-
-    case 'PUT':
-        if ($controller != null) {
-            echo $userEventController->update($id, $data);
+        } else if ($controller != null && $id != null){
+            echo $userEventController->updateEvent($data, $id);
         }
         else echo json_encode(["erro" => "true"]);
         break;

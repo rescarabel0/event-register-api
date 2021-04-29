@@ -26,8 +26,10 @@ class EventController{
         }
     }
 
-    function update($data = null, $id = 0){
-        
+    function updateEvent($data = null, $id = 0){
+        $event = $this->convertDataToEventJson($data);
+        $event->setId($id);
+        return $this->eventModel->edit($event, $id);
     }
 
     function delete($id = 0){

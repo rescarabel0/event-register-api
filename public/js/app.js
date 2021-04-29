@@ -46,6 +46,8 @@ $(document).ready(function(){
         formCad();
     });
     
+    
+    
 })
 
 function formLogin(){
@@ -94,3 +96,6 @@ function responseTreatment(response){
     return json;
 }
 
+function formEditEvent(data){
+
+}
