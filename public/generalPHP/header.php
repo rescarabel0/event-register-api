@@ -15,7 +15,7 @@
         <div class="navbar-menu">
             <div class="navbar-start">
                 <div class="navbar-item">
-                    <a class="button is-dark">Início</a>
+                    <a class="button is-dark" onClick="location.reload()">Início</a>
                 </div>
             </div>
             <div class="navbar-end">

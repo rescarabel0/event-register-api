@@ -47,7 +47,7 @@
                                 <button type='submit' class='button is-primary'>Submit</button>
                             </div>
                             <div class='control'>
-                                <button type='reset' class='button is-danger'>Cancel</button>
+                                <button type='reset' class='button is-danger'>Reset</button>
                             </div>
                         </div>
                     </form>

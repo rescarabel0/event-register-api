@@ -10,7 +10,7 @@
             $.get("../api/index.php", function(data){
                 let lado = 0;
                 let colunas = document.createElement("section");
-                    colunas.className = "columns";
+                    colunas.className = "columns events";
                 let coluna1 = document.createElement("div");
                     coluna1.className = "column is-half";
                     $(coluna1).attr("id", "coluna1");
@@ -21,25 +21,29 @@
                 
                 
                 data.forEach(event => {
+
                     let table = document.createElement("table");
-                        table.className = "table is-striped is-fullwidth is-hoverable";
+                        table.className = "table is-fullwidth is-hoverable is-bordered";
                     
                     //Cabeça da tabela
                     let thead = document.createElement("thead");
 
                     let theadTR = document.createElement("tr");
                     let titulo = document.createElement("th");
-                        titulo.innerHTML = 'Title';
+                        titulo.innerHTML = '<h2><strong>Title</strong></h2>';
                         $(theadTR).append(titulo);
                     let descricao = document.createElement("th");
-                        descricao.innerHTML = 'Description';
+                        descricao.innerHTML = '<h2><strong>Description</strong></h2>';
                         $(theadTR).append(descricao);
                     let start = document.createElement("th");
-                        start.innerHTML = 'Starts at';
+                        start.innerHTML = '<h2><strong>Starts at</strong></h2>';
                         $(theadTR).append(start);
                     let end = document.createElement("th");
-                        end.innerHTML = 'Ends at';
+                        end.innerHTML = '<h2><strong>Ends at</strong></h2>';
                         $(theadTR).append(end);
+                    let buttons = document.createElement("th");
+                        buttons.innerHTML = '';
+                        $(theadTR).append(buttons);
                     $(thead).append(theadTR);
                     $(table).append(thead);
 
@@ -59,6 +63,9 @@
                     let eventEnd = document.createElement("th");
                         eventEnd.innerHTML = event['end'];
                         $(tbodyTR).append(eventEnd);
+                    let eventBtn = document.createElement("th");
+                        eventBtn.innerHTML = "<button class='button is-small is-warning editE' id='edit_" + event['id'] + "'><i class='fas fa-edit'></i></button><button class='button is-small is-danger deleteE' id='delete_"+ event['id'] +"'><i class='fas fa-trash-alt'></i></button>";
+                        $(tbodyTR).append(eventBtn);
                     $(tbody).append(tbodyTR);
                     $(table).append(tbody);
 

@@ -54,7 +54,7 @@ function formLogin(){
     
     let div1 = document.createElement("div");
         div1.className = "field alert";
-        div1.innerHTML = '<label class="label" for="username">Username</label><div class="control"><input type="text" name="username" class="input" placeholder="Jhon Doe" required></div>'
+        div1.innerHTML = '<label class="label" for="username">Username</label><div class="control"><input type="text" name="username" class="input" placeholder="JohnDoe123" required></div>'
     $(form).append(div1);                        
     let div2 = document.createElement("div");
         div2.className = "field";

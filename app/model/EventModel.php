@@ -89,4 +89,27 @@ class EventModel{
         }
         echo json_encode($temp);
     }
+
+    private function loadById($id){
+        $conexao = mysqli_connect(HOST, USUARIO, SENHA, DB) or die ('Não foi possível conectar');
+        $idUser = isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : 1;
+        $eventos = "SELECT * from event where userId = '$idUser' and id = '$id'";
+        $res = mysqli_query($conexao, $eventos);
+        $row = mysqli_fetch_all($res);
+
+        $temp;
+
+        foreach ($row as $e) {
+            $temp[] = array(
+                "id" => $e[0],
+                "userId" => $e[1],
+                "titulo" => $e[2],
+                "descricao" => $e[3],
+                "start" => $e[4],
+                "end" => $e[5]
+            );
+        }
+        echo json_encode($temp);
+    }
 }
+
