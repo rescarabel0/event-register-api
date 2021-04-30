@@ -16,10 +16,15 @@ $(document).ready(function(){
         e.preventDefault();
         let data = $(this).serialize();
         $.post("/db/LoginUsuario.php", data, function(e){
-            console.log(e);
-            // alert("Logged in!"); 
-            // location.reload(); 
+            let msg = responseTreatment(e);
+            if (msg['status'] == "ok") {
+                alert("Logged in!"); 
+            } else {
+                alert("User or/and password do not exist!");
+            }
+            
         });
+        location.reload();
     });
     $(document).on("submit", "#eventCadForm", function(e){
         e.preventDefault();
