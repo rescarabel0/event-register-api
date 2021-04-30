@@ -33,7 +33,7 @@ class EventController{
     }
 
     function delete($id = 0){
-        return json_encode(["name" => "delete"]);
+        return $this->eventModel->deleteEvent($id);
     }
 
     function getAll(){

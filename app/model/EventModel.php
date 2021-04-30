@@ -28,6 +28,10 @@ class EventModel{
         
     }
 
+    function deleteEvent($id = 0){
+        $this->deleteBd($id);
+    }
+
     function list(){
         $this->load();
     }
@@ -157,6 +161,18 @@ class EventModel{
             }
             $conexao->close();
         } 
+    }
+    private function deleteBd($id){
+        $conexao = mysqli_connect(HOST, USUARIO, SENHA, DB) or die ('Não foi possível conectar');
+
+        $sql = "DELETE from event WHERE id = '$id'";
+
+        if ($conexao->query($sql)) {
+            echo "ok";
+        } else {
+            echo "error";
+        }
+        $conexao->close();
     }
 }
 

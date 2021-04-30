@@ -147,6 +147,27 @@
             alert("Editado com sucesso!");
             location.reload();
         });
+        $(document).on("click", "button.deleteE", function(e){
+            e.preventDefault();
+            let id;
+            if($(this).attr("id").length > 8){
+                id = $(this).attr("id").substring(7,$(this).attr("id").length);
+            } else {
+                id = $(this).attr("id").charAt(7);
+            }
+            $.ajax({
+                type: "DELETE",
+                url: "../api/index.php",
+                data: id,
+                success: function(e){
+                    console.log(e);
+                }, 
+                error: function(e){
+                    console.log(e);
+                }
+            })
+            
+        })
     })
     function newEventForm(){
         let form = $("<form>");
