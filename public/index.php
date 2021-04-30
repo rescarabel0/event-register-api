@@ -20,6 +20,7 @@ session_start();
             cursor: pointer;
             text-align: center;
         }
+
         table {
             text-align: center;
         }
@@ -46,6 +47,7 @@ session_start();
             color: white;
             font-size: larger;
         }
+        
     </style>
     <link rel="stylesheet" href="css/header.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

@@ -115,8 +115,7 @@
                 let div5 = document.createElement("div");
                     div5.className = "field";
                     div5.innerHTML = '<label for="end" class="label">Ends at:</label><div class="control"><input type="time" name="end" class="input" value="'+ data[0]['end'] +'" pattern="([0-1]{1}[0-9]{1}|20|21|22|23):[0-5]{1}[0-9]{1}"  required></div>'
-                $(form).append(div5);
-                                
+                $(form).append(div5);          
                 let div6 = document.createElement("div");
                     $(div6).attr("id", "userId");
                     $(div6).css("display", "none");
@@ -144,7 +143,7 @@
                 url: "../api/index.php",
                 data: data
             });
-            alert("Editado com sucesso!");
+            alert("Successfully edited!");
             location.reload();
         });
         $(document).on("click", "button.deleteE", function(e){

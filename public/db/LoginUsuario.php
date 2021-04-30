@@ -25,5 +25,5 @@ if($row == 1) {
     $status = array(
         'status' => 'error'
     );
-    if (isset($_POST)) echo json_encode($status); return;
+    if (isset($_POST)) echo json_encode($status); exit;
 }
