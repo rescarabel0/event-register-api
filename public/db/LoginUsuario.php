@@ -13,7 +13,7 @@ $row = mysqli_num_rows($result);
 $row_b = mysqli_fetch_array($result);
 
 if($row == 1) {
-    $_SESSION['user'] = $usuario;
+    
     $_SESSION['usuario_id'] = $row_b[0];
     $_SESSION['autenticado'] = true;
     
@@ -22,10 +22,8 @@ if($row == 1) {
     );
     if (isset($_POST)) echo json_encode($status); exit;
 } else {
-    $_SESSION['autenticado'] = false;
-
     $status = array(
         'status' => 'error'
     );
-    if (isset($_POST)) echo json_encode($status); exit;
+    if (isset($_POST)) echo json_encode($status); return;
 }

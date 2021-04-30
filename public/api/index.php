@@ -62,10 +62,7 @@ switch ($method) {
         break;
 
     case 'DELETE':
-        if ($controller != null && $id != null) {
-            echo $userEventController->delete($id);
-        }
-        else echo json_encode(["erro" => "true"]);
+        echo $userEventController->delete($id);
         break;
     
     default:

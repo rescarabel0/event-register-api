@@ -15,18 +15,10 @@ $(document).ready(function(){
     $(document).on("submit", "#userLogForm", function(e){
         e.preventDefault();
         let data = $(this).serialize();
-        $.post("/db/LoginUsuario.php", data, function(result){
-            let msg = responseTreatment(result);
-            let status = false;
-            for (let i in msg) {
-                if(msg[i] == "ok") status = true;
-            }
-            if(status == true){
-                alert("Logged in!"); 
-                location.reload(); 
-                return false;
-            } 
-            else alert("Error, try again later");
+        $.post("/db/LoginUsuario.php", data, function(e){
+            console.log(e);
+            // alert("Logged in!"); 
+            // location.reload(); 
         });
     });
     $(document).on("submit", "#eventCadForm", function(e){

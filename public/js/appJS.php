@@ -157,16 +157,11 @@
             }
             $.ajax({
                 type: "DELETE",
-                url: "../api/index.php",
-                data: id,
-                success: function(e){
-                    console.log(e);
-                }, 
-                error: function(e){
-                    console.log(e);
-                }
+                url: "../api/event",
+                data: {'id': id},
             })
-            
+            alert("Successfully deleted!");
+            location.reload();
         })
     })
     function newEventForm(){
