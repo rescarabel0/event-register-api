@@ -75,7 +75,7 @@ function formCad(){
     $(form).append(div1);                        
     let div2 = document.createElement("div");
         div2.className = "field";
-        div2.innerHTML = '<label for="email" class="label">Email</label><div class="control"><input type="text" name="email" class="input" placeholder="john.doe@example.com" required></div>'
+        div2.innerHTML = '<label for="email" class="label">Email</label><div class="control"><input type="email" name="email" class="input" placeholder="john.doe@example.com" required></div>'
     $(form).append(div2);                        
     let div3 = document.createElement("div");
         div3.className = "field";
